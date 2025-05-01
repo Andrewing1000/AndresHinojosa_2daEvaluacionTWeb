@@ -4,8 +4,9 @@
   <div class="app-content">
       <Navbar>
         <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/about">About</router-link></li>
-        <li><router-link to="/contact">Contact</router-link></li>
+        <li><router-link to="/characters">Characters</router-link></li>
+        <li><router-link to="/starships">Starships</router-link></li>
+        <li><router-link to="/planets">Planets</router-link></li>
       </Navbar>
     <router-view/>
   </div>
@@ -36,4 +37,6 @@ html, body, #app {
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+
 </style>

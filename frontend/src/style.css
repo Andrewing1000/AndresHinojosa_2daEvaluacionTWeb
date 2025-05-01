@@ -14,7 +14,11 @@
   font-display: swap;
 }
 
+
 :root {
+  --sw-yellow: #FFE81F;
+  --sw-dark: #000;
+  --sw-gray: #111;
   font-family: 'News Cycle';
   line-height: 1.5;
   font-weight: 400;
