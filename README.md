@@ -73,6 +73,7 @@ Los errores de ESLint también se muestran al vuelo durante `npm run dev` median
 
 [Descargar PDF de la presentación final](./docs/SWAPI_presentation.pdf)
 
-<iframe src="./docs/presentacion-final.pdf" width="100%" height="600px"></iframe>
 
-
+<object data="./docs/presentacion-final.pdf" type="application/pdf" width="100%" height="600">
+  <p>Tu navegador no soporta PDF embebidos. Puedes descargarlo <a href="./docs/presentacion-final.pdf">aquí</a>.</p>
+</object>
