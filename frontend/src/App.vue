@@ -9,11 +9,13 @@
         <li><router-link to="/planets">Planets</router-link></li>
       </Navbar>
     <router-view/>
+    <Footer/>
   </div>
 </template>
 
 <script setup>
 import Navbar from "./components/Navbar/Navbar.vue";
+import Footer from "./components/Footer.vue";
 </script>
 
 <style>

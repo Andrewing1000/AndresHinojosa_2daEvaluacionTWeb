@@ -34,9 +34,9 @@ nav::after {
   transform: translateX(-50%);
   width: 0;
   height: 0;
-  border-left: 16px solid transparent;   /* wider base */
-  border-right: 16px solid transparent;  /* wider base */
-  border-bottom: 16px solid #FFE81F;     /* taller arrow */
+  border-left: 20px solid transparent;   /* wider base */
+  border-right: 20px solid transparent;  /* wider base */
+  border-bottom: 20px solid #FFE81F;     /* taller arrow */
   animation: bounce 1.5s infinite;
   pointer-events: none;
 }
@@ -68,7 +68,7 @@ nav:hover::after {
   transition: top 1s ease 1s, opacity 0.5s ease 1s;
 }
 
-.navbar:hover {
+nav:hover > .navbar{
   top: 0;
   opacity: 1;
   transition-delay: 0s;
