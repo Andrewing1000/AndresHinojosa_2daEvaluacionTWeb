@@ -1,6 +1,6 @@
 # Portal SWAPI
 
-![Pantalla principal](./docs/home.png)
+![Pantalla de inicio](./docs/home-view.png)
 
 Portal web interactivo que consume la API pública de SWAPI para mostrar personajes, naves espaciales y planetas del universo Star Wars.
 
@@ -45,9 +45,6 @@ Este proyecto es un **portal web para SWAPI**, un buscador interactivo de person
 
 ## Capturas de pantalla
 
-### Inicio
-
-![Pantalla de inicio](./docs/home-view.png)
 
 ### Personajes
 
