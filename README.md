@@ -68,7 +68,11 @@ npm run lint
 
 Los errores de ESLint también se muestran al vuelo durante `npm run dev` mediante `vite-plugin-eslint`.
 
-## Licencia
 
-MIT © 2025 Andres Ignacio Hinojos Garnica
+## Presentación Final
+
+[Descargar PDF de la presentación final](./docs/SWAPI_presentation.pdf)
+
+<iframe src="./docs/presentacion-final.pdf" width="100%" height="600px"></iframe>
+
 
