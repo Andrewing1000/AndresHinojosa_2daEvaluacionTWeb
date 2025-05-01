@@ -94,10 +94,8 @@
 
     background: transparent;
 
-perspective: 600px;
-  perspective-origin: 50% 100%;
-  transform-origin: center bottom;
-  /* transform: rotateX(65deg); */
+    transform-origin: center bottom;
+    transform: rotateX(20deg) translateZ(200px);
 
   mask-image: linear-gradient(to bottom, transparent 10%, black 40%, black 80%, transparent 100%);
   mask-size: 100% 100%;

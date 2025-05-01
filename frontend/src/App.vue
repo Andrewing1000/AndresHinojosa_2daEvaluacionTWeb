@@ -21,7 +21,8 @@ html, body, #app {
   margin: 0;
   padding: 0;
   height: 100svh;
-  width: 100svw;
+  width: 100svw; 
+  overflow: hidden;
 }
 
 #app {
@@ -31,11 +32,13 @@ html, body, #app {
 
 .app-content {
   flex: 1;
-  overflow-y: auto;
-
+  overflow: hidden;
+  
   background-image: url('/images/d7a61190a836bdcfc62bf97af4f4c74b.png');
   background-size: cover;
   background-repeat: no-repeat;
+  perspective: 350px;
+  perspective-origin: 50% 100%;
 }
 
 

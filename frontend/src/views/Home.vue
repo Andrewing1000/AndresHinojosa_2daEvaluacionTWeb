@@ -103,6 +103,8 @@
   .card-link__img {
     width: 180px;
     height: auto;
+    max-height: 10svh;
+    object-fit: contain;
     border: none;
     border-radius: 4px;
     padding: 10px;
