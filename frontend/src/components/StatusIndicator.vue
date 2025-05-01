@@ -15,7 +15,7 @@
 
 <script setup>
 // Props for loading and error state
-const props = defineProps({
+const {loading, error} = defineProps({
   loading: {
     type: Boolean,
     default: false

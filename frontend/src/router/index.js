@@ -2,7 +2,7 @@ import {createRouter, createWebHistory} from 'vue-router';
 import CharacterList from '../views/CharacterList.vue';
 import StarshipList from '../views/StarshipList.vue';
 import PlanetsList from '../views/PlanetsList.vue';
-import Home from '../views/Home.vue'
+import Home from '../views/HomePage.vue'
 const routes = [
     {path: '/characters', name: 'characters', component: CharacterList},
     {path: '/starships', name: 'starshipts', component: StarshipList},
