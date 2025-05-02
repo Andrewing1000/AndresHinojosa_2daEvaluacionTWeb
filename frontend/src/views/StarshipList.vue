@@ -1,34 +1,35 @@
 <template>
-    <StatusIndicator
-      :loading="isLoading"
-      :error="errorMessage"
-    />
-  <div class="starship-list" ref="scrollContainer">
-    <!-- Render each starship within an error boundary -->
-    <ErrorBoundary
-      v-for="(ship, index) in starships"
-      :key="ship.name + index"
-    >
-      <template #default>
-        <CharacterCard :properties="ship" />
-      </template>
-      <template #fallback="{ error }">
-        <StatusIndicator :error="error.message" />
-      </template>
-    </ErrorBoundary>
+  <StatusIndicator :loading="isLoading" :error="errorMessage" />
+  <div class="page-container">
+    <div class="transform-container" ref="scrollContainer">
+      <div class="starship-list">
+        <!-- Render each starship within an error boundary -->
+        <ErrorBoundary
+          v-for="(ship, index) in starships"
+          :key="ship.name + index"
+        >
+          <template #default>
+            <CharacterCard :properties="ship" />
+          </template>
+          <template #fallback="{ error }">
+            <StatusIndicator :error="error.message" />
+          </template>
+        </ErrorBoundary>
 
-    <!-- Overall status indicator for loading and fetch errors -->
+        <!-- Overall status indicator for loading and fetch errors -->
 
-    <!-- Sentinel element to trigger loading more -->
-    <div ref="sentinel" class="sentinel"></div>
+        <!-- Sentinel element to trigger loading more -->
+        <div ref="sentinel" class="sentinel"></div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import CharacterCard from '../components/CharacterCard.vue'
-  import StatusIndicator from '../components/StatusIndicator.vue'
-  import ErrorBoundary from '../components/ErrorBoundary.vue'
+import StatusIndicator from '../components/StatusIndicator.vue'
+import ErrorBoundary from '../components/ErrorBoundary.vue'
 
 // Reactive state for starships
 const starships = ref([])
@@ -36,6 +37,7 @@ const nextUrl = ref('https://www.swapi.tech/api/starships')
 const isLoading = ref(false)
 const errorMessage = ref('')
 const sentinel = ref(null)
+const scrollContainer = ref(null)
 let observer = null
 
 // Fetch next batch of starships
@@ -48,13 +50,18 @@ async function loadMore() {
     if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`)
     const data = await res.json()
     nextUrl.value = data.next
-      ? (data.next.startsWith('http') ? data.next : `https://www.swapi.tech${data.next}`)
+      ? data.next.startsWith('http')
+        ? data.next
+        : `https://www.swapi.tech${data.next}`
       : null
     const batch = await Promise.all(
-      data.results.map(ship =>
+      data.results.map((ship) =>
         fetch(ship.url)
-          .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}: ${r.statusText}`); return r.json() })
-          .then(d => d.result.properties)
+          .then((r) => {
+            if (!r.ok) throw new Error(`HTTP ${r.status}: ${r.statusText}`)
+            return r.json()
+          })
+          .then((d) => d.result.properties)
       )
     )
     starships.value.push(...batch)
@@ -70,8 +77,10 @@ async function loadMore() {
 onMounted(() => {
   loadMore()
   observer = new IntersectionObserver(
-    entries => { if (entries[0].isIntersecting) loadMore() },
-    { root: null, rootMargin: '0px', threshold: 1.0 }
+    (entries) => {
+      if (entries[0].isIntersecting) loadMore()
+    },
+    { root: scrollContainer.value, rootMargin: '0px', threshold: 1.0 }
   )
   if (sentinel.value) observer.observe(sentinel.value)
 })
@@ -82,27 +91,43 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-.starship-list {
-  position: relative;
+.page-container {
   height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.transform-container {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 80%,
+    transparent 100%
+  );
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  height: 100%;
   overflow-y: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding-top: 40svh;
+
+  backface-visibility: hidden;
+  will-change: transform;
+  transform-style: preserve-3d;
+  transform-origin: center bottom;
+  transform: perspective(340px) rotateX(20deg) translateZ(200px);
+
+  contain: paint;
+}
+
+.starship-list {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
   padding: 1rem;
   background: transparent;
-
-  transform-origin: center bottom;
-  transform: rotateX(20deg) translateZ(200px);
-
-
-    mask-image: linear-gradient(to bottom, transparent 10%, black 40%, black 80%, transparent 100%);
-    mask-size: 100% 100%;
-    mask-repeat: no-repeat;
-
-    
-    padding-top: 300px;
 }
 
 /* Fade overlays */

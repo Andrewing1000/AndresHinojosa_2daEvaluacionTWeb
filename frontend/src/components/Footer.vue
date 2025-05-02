@@ -60,14 +60,14 @@
   /* Blinking side indicator */
   .indicator-circle {
     position: absolute;
-    left: 20px;
+    left: 40%;
     top: 20px;
     transform: translateY(-50%);
     width: 20px;
     height: 20px;
     border: 10px solid #FFE81F;
     border-radius: 50%;
-    animation: blink 2s ease-in-out infinite;
+    animation: blink 1s ease-in-out infinite;
     pointer-events: none;
     z-index: 30;
   }

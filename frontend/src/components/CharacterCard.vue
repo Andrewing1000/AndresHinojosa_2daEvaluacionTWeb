@@ -64,6 +64,13 @@
     font-family: 'News Cycle', sans-serif;
     color: var(--sw-yellow);
     backdrop-filter: blur(10px) brightness(50%);
+    transform-style: flat;
+/* 
+    scroll-snap-align: start;
+    scroll-snap-stop: always; */
+
+    transform: translateZ(0);
+    will-change: transform;
   }
   
   .card * {
